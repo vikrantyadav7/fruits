@@ -470,24 +470,29 @@ class _MyHomePageState extends State<MyHomePage> {
                       scrollDirection: Axis.horizontal,
                       itemCount: 5,
                       itemBuilder: (ctx, index) {
-                        return SizedBox(
-                          width: 80,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                child: Image.asset(
-                                  "images/image ${index + 1}.png",
-                                  width: 64,
-                                  height: 64,
-                                  fit: BoxFit.cover,
+                        return GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (ctx) => FruitDetails(index: index,searching: isSearching,)));
+                          },
+                          child: SizedBox(
+                            width: 80,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  child: Image.asset(
+                                    "images/image ${index + 1}.png",
+                                    width: 64,
+                                    height: 64,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius:
+                                      const BorderRadius.all(Radius.circular(5)),
                                 ),
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(5)),
-                              ),
-                              Text(json[index]["Product"])
-                            ],
+                                Text(json[index]["Product"])
+                              ],
+                            ),
                           ),
                         );
                       }),
